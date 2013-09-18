@@ -1,0 +1,27 @@
+﻿@model ConsultantProfiles.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="container" style="max-width: 340px;">
+  <div class="form-group">
+  @using (Html.BeginForm("Register", "AccountController",
+                         new { ReturnUrl = ViewBag.ReturnUrl },
+                         FormMethod.Post, new { @class = "form-signin" }))
+  {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <h2 class="form-signin-heading">Register</h2>
+    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Email address" } )
+    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" } )
+    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Password confirmation" } )
+    <br />
+    <input type="submit" value="Register" class="btn btn-primary btn-lg btn-block" />
+  }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
